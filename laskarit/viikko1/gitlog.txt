@@ -1,0 +1,103 @@
+commit b880ce5bac57ae18b7011732b2e0f5c02a9a6c4e
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:53:45 2018 +0200
+
+    lijabsfvlbiqwr
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 75f673171d5a8a43fa0079b99a8710ce0b7b671a
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:42:27 2018 +0200
+
+    kuhguhvo
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit ec397ddcea8773aa741624faa703b7c496dcc561
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:36:14 2018 +0200
+
+    liuhfoqwgwg
+
+ eka.txt    | 1 +
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit 2ab5ccd3716668871e5ed1a1ed5519d91763c7a2
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:31:11 2018 +0200
+
+    lsihfqiweubflqib
+
+ eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0dd2f85692c57e1be01cb8b9282533d75ed80694
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:29:28 2018 +0200
+
+    poistettiin tiedosto
+
+ tiedosto.txt | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit f538be048a5af9294132d5792c6af5e28b8829ad
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:27:44 2018 +0200
+
+    liika työtä keksiä nimiä
+
+ tiedosto.txt | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+commit f145d9cd6bd982c008ae89bad6645b7ee2ca8314
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sun Mar 18 22:23:22 2018 +0200
+
+    muutoksia tähän tehtävään
+
+ tiedosto.txt | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit ea83b712f404c0a6e56f664657e7293a36847bce
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sat Mar 17 00:27:59 2018 +0200
+
+    lisättiin stuff ja hahahaa
+
+ stuff/hahahaa.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit bb0b7ecc18f8aeee28c7726837f8421b646be776
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sat Mar 17 00:25:44 2018 +0200
+
+    lisattiin kolmas.txt
+
+ kolmas.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit f9317bad8438b632afab19a00a2e7a87ed5f6c59
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sat Mar 17 00:18:55 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 91522457f7d999288e0a0044951ff210d59fc4dc
+Author: henri suominen <henri.suominen@helsinki.fi>
+Date:   Sat Mar 17 00:10:43 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
