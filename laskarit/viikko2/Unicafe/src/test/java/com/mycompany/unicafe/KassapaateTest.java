@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  
@@ -23,11 +24,13 @@ public class KassapaateTest {
         kassa = new Kassapaate();
     }    
     
+    @Test
     public void luodunKassapaatteenRahamaaraJaMyytyjenLounaidenMaaraOnOikea() {
         assertEquals(100000,this.kassa.kassassaRahaa());
         assertEquals(0,this.kassa.edullisiaLounaitaMyyty()+this.kassa.maukkaitaLounaitaMyyty());
     }
     
+    @Test
     public void kateisostoToimiiEdullistenOsalta() {
         this.kassa.syoEdullisesti(700);
         assertEquals(100240,this.kassa.kassassaRahaa());
@@ -37,6 +40,7 @@ public class KassapaateTest {
         assertEquals(1,this.kassa.edullisiaLounaitaMyyty()); 
     }
     
+    @Test
     public void kateisostoToimiiMaukkaidenOsalta() {
         this.kassa.syoMaukkaasti(700);
         assertEquals(100400,this.kassa.kassassaRahaa());
@@ -46,6 +50,7 @@ public class KassapaateTest {
         assertEquals(1,this.kassa.edullisiaLounaitaMyyty()); 
     }    
 
+    @Test
     public void korttiOstoEdullistenLounaidenOsalta() {
         Maksukortti kortti = new Maksukortti(250);
         assertTrue(this.kassa.syoEdullisesti(kortti));
@@ -56,6 +61,7 @@ public class KassapaateTest {
         assertEquals(1,this.kassa.edullisiaLounaitaMyyty());
     }
     
+    @Test
     public void korttiOstoMaukkaidenLounaidenOsalta() {
         Maksukortti kortti = new Maksukortti(420);
         assertTrue(this.kassa.syoMaukkaasti(kortti));
@@ -66,6 +72,7 @@ public class KassapaateTest {
         assertEquals(1,this.kassa.maukkaitaLounaitaMyyty());   
     }
     
+    @Test
     public void kortilleRahaaLadattaessaKortinSaldoMuuttuuJaKassassaOlevaRahamaaraKasvaaLadatullaSummalla() {
         Maksukortti kortti = new Maksukortti(0);
         this.kassa.lataaRahaaKortille(kortti, 500);
