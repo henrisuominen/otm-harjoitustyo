@@ -44,32 +44,45 @@ public class KassapaateTest {
     public void kateisostoToimiiMaukkaidenOsalta() {
         this.kassa.syoMaukkaasti(700);
         assertEquals(100400,this.kassa.kassassaRahaa());
-        assertEquals(1,this.kassa.edullisiaLounaitaMyyty());
+        assertEquals(1,this.kassa.maukkaitaLounaitaMyyty());
         this.kassa.syoMaukkaasti(50);
         assertEquals(100400,this.kassa.kassassaRahaa());
-        assertEquals(1,this.kassa.edullisiaLounaitaMyyty()); 
+        assertEquals(1,this.kassa.maukkaitaLounaitaMyyty()); 
     }    
 
     @Test
     public void korttiOstoEdullistenLounaidenOsalta() {
         Maksukortti kortti = new Maksukortti(250);
-        assertTrue(this.kassa.syoEdullisesti(kortti));
-        assertEquals(100240,this.kassa.kassassaRahaa());
+        this.kassa.syoEdullisesti(kortti);
+        assertEquals(100000,this.kassa.kassassaRahaa());
         assertEquals(1,this.kassa.edullisiaLounaitaMyyty());
-        assertFalse(this.kassa.syoEdullisesti(kortti));
-        assertEquals(100240,this.kassa.kassassaRahaa());
+        this.kassa.syoEdullisesti(kortti);
+        assertEquals(100000,this.kassa.kassassaRahaa());
         assertEquals(1,this.kassa.edullisiaLounaitaMyyty());
     }
     
     @Test
     public void korttiOstoMaukkaidenLounaidenOsalta() {
         Maksukortti kortti = new Maksukortti(420);
-        assertTrue(this.kassa.syoMaukkaasti(kortti));
-        assertEquals(100400,this.kassa.kassassaRahaa());
+        this.kassa.syoMaukkaasti(kortti);
+        assertEquals(100000,this.kassa.kassassaRahaa());
         assertEquals(1,this.kassa.maukkaitaLounaitaMyyty());
-        assertFalse(this.kassa.syoMaukkaasti(kortti));
-        assertEquals(100400,this.kassa.kassassaRahaa());
+        this.kassa.syoMaukkaasti(kortti);
+        assertEquals(100000,this.kassa.kassassaRahaa());
         assertEquals(1,this.kassa.maukkaitaLounaitaMyyty());   
+    }
+    
+    @Test
+    public void assertTruetJaFalsetToimivat() {
+        Maksukortti korttiMaukas1 = new Maksukortti(420);
+        Maksukortti korttiEdullinen1 = new Maksukortti(270);
+        Maksukortti korttiMaukas2 = new Maksukortti(30);
+        Maksukortti korttiEdullinen2 = new Maksukortti(60);
+        assertTrue(this.kassa.syoMaukkaasti(korttiMaukas1));
+        assertTrue(this.kassa.syoEdullisesti(korttiEdullinen1));
+        assertFalse(this.kassa.syoMaukkaasti(korttiMaukas2));
+        assertFalse(this.kassa.syoEdullisesti(korttiEdullinen2));
+
     }
     
     @Test
