@@ -1,6 +1,6 @@
 ###### OTM-Harjoitustyö
 
-####BLACKJACK-Peli
+#### BLACKJACK-Peli
 
 [vaatimusmäärittely](https://github.com/henrisuominen/otm-harjoitustyo/blob/master/dokumentointi/määrittelydokumentti)
 
