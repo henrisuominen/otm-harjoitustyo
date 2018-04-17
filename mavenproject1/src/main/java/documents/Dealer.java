@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject1;
+package documents;
 
+import documents.Kortti;
+import documents.Pakka;
 import java.util.ArrayList;
 
 /**
@@ -15,14 +17,16 @@ public class Dealer {
     private ArrayList<Kortti> kortit;
 
     
-    public Dealer(Kortti kortti1, Kortti kortti2) {
+    public Dealer() {
         this.kortit = new ArrayList<>();
-        this.kortit.add(kortti1);
-        this.kortit.add(kortti2);
     }
     
     public void lisaa(Kortti kortti) {
         this.kortit.add(kortti);
+    }
+    
+    public ArrayList<Kortti> getKortit() {
+        return this.kortit;
     }
     
     public int getMinSumma() {
@@ -74,4 +78,18 @@ public class Dealer {
         return true;
     }
     
+    public void tyhjenna() {
+        this.kortit.clear();
+    }
+    
+    public void nostaKortteja(Pakka pakka) {
+        boolean valmis = false;
+        while(!valmis) {
+            if (this.getSumma() < 17) {
+                this.lisaa(pakka.getYlin());
+            } else {
+                valmis = true;
+            }
+        }
+    }
 }

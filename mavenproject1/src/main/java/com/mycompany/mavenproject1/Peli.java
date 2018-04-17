@@ -5,6 +5,11 @@
  */
 package com.mycompany.mavenproject1;
 
+import documents.Dealer;
+import documents.Kasi;
+import documents.Kortti;
+import documents.Pelaaja;
+import documents.Pakka;
 import java.util.Scanner;
 
 /**

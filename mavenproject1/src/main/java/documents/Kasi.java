@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject1;
+package documents;
 
+import documents.Kortti;
+import documents.Pelaaja;
 import java.util.ArrayList;
 
 /**
@@ -120,5 +122,9 @@ public class Kasi {
     
     public Kortti getKortti2() {
         return this.kortit.get(1);
+    }
+    
+    public ArrayList<Kortti> getKortit() {
+        return this.kortit;
     }
 }

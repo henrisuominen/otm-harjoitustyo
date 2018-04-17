@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject1;
+package documents;
 
 import java.util.Random;
 
@@ -63,4 +63,10 @@ public class Pakka {
         return pakka[ylin++];
     }
     
+    public boolean isEmpty() {
+        if (ylin > (pakkoja*52-1)) {
+            return true;
+        }
+        return false;
+    }
 }
