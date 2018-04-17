@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject1;
+package domain;
 
-import documents.Dealer;
-import documents.Kasi;
-import documents.Kortti;
-import documents.Pelaaja;
-import documents.Pakka;
-import java.util.Scanner;
+import domain.Dealer;
+import domain.Kasi;
+import domain.Kortti;
+import domain.Pelaaja;
+import domain.Pakka;
 
 /**
  *
@@ -27,7 +26,7 @@ public class Peli {
         this.pakka = pakka;
         this.pelaajat = pelaajat;
 
-        this.kadet = new Kasi[2*pelaajat.length];
+        this.kadet = new Kasi[2 * pelaajat.length];
         this.dealer = null;
     }
     
@@ -51,10 +50,10 @@ public class Peli {
             if (this.kadet[i] != null) {
                 if (this.kadet[i].getSumma() > this.dealer.getSumma() && this.kadet[i].getSumma() < 22) {
                     this.kadet[i].voitto();
-                    System.out.println("JEE JEE VOITIT:" + this.kadet[i].getPelaaja() + " : " + 2*this.kadet[i].getPanos());
+                    System.out.println("JEE JEE VOITIT:" + this.kadet[i].getPelaaja() + " : " + 2 * this.kadet[i].getPanos());
                 } else if (this.dealer.getSumma() > 21) {
                     this.kadet[i].voitto();
-                    System.out.println("JEE JEE VOITIT:" + this.kadet[i].getPelaaja() + " : " + 2*this.kadet[i].getPanos());
+                    System.out.println("JEE JEE VOITIT:" + this.kadet[i].getPelaaja() + " : " + 2 * this.kadet[i].getPanos());
                 }
             }
         }
@@ -65,12 +64,12 @@ public class Peli {
             if (kadet[luku].onSamat()) {
                 Kortti kortti1 = kadet[luku].getKortti1();
                 Kortti kortti2 = kadet[luku].getKortti2();
-                kadet[luku] = new Kasi(kortti1,pakka.getYlin(),kadet[luku].getPanos(),kadet[luku].getPelaaja());
+                kadet[luku] = new Kasi(kortti1, pakka.getYlin(), kadet[luku].getPanos(), kadet[luku].getPelaaja());
                 System.out.println(kadet[luku] + " : " + kadet[luku].getSumma());
                 boolean active = true;
                 for (int i = 0; i < kadet.length; i++) {
                     if (kadet[i] == null && active) {
-                        kadet[i] = new Kasi(kortti2,pakka.getYlin(),kadet[luku].getPanos(),kadet[luku].getPelaaja());
+                        kadet[i] = new Kasi(kortti2, pakka.getYlin(), kadet[luku].getPanos(), kadet[luku].getPelaaja());
                         System.out.println(kadet[i] + " : " + kadet[i].getSumma());
                         active = false;
                     }

@@ -5,10 +5,10 @@
  */
 package com.mycompany.mavenproject1;
 
-import documents.Dealer;
-import documents.Kasi;
-import documents.Pelaaja;
-import documents.Pakka;
+import domain.Dealer;
+import domain.Kasi;
+import domain.Pelaaja;
+import domain.Pakka;
 import java.util.ArrayList;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -33,19 +33,19 @@ public class BlackJack extends Application {
     Pakka peliPakka;
     Dealer dealer;
     
-    public void nosta (Kasi kasi,HBox naytto) {
-        if (!peliPakka.isEmpty()&&kasi.getMinSumma() < 21) {
+    public void nosta(Kasi kasi, HBox naytto) {
+        if (!peliPakka.isEmpty() && kasi.getMinSumma() < 21) {
             kasi.lisaa(peliPakka.getYlin());
-            naytaKasi(kasi,naytto);
+            naytaKasi(kasi, naytto);
         }
     }
     
-    public void dealerAloitus (HBox naytto) {
+    public void dealerAloitus(HBox naytto) {
         dealer.lisaa(peliPakka.getYlin());
         naytaKasi(naytto);
     }
     
-    public void dealerLopetus (HBox naytto) {
+    public void dealerLopetus(HBox naytto) {
         dealer.nostaKortteja(peliPakka);
         naytaKasi(naytto);
     }
@@ -58,7 +58,7 @@ public class BlackJack extends Application {
         naytto.getChildren().add(new Label(" Summa: " + dealer.getSumma()));
     }
     
-    public void naytaKasi(Kasi kasi,HBox naytto) {
+    public void naytaKasi(Kasi kasi, HBox naytto) {
         naytto.getChildren().clear();
         for (int i = 0; i < kasi.getKortit().size(); i++) {
             //naytto.getChildren().add(new Image("kuvat/2C.jpg"));
@@ -90,20 +90,19 @@ public class BlackJack extends Application {
         pelaajaValinnat1.getChildren().add(jaa1);
         pelaajaValinnat1.getChildren().add(split1);
         
-       root2.setBottom(pelaajaValinnat1);
+        root2.setBottom(pelaajaValinnat1);
 
         Scene scene = new Scene(root2, 900, 750);
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
-             
 
         VBox a1 = (VBox) root2.getChildren().get(1);
         HBox b1 = (HBox) a1.getChildren().get(0);
-        Kasi pelaajan1Kasi = new Kasi(peliPakka.getYlin(),peliPakka.getYlin(),50,pelaajatPelissa.get(0));
-        naytaKasi(pelaajan1Kasi,b1);
+        Kasi pelaajan1Kasi = new Kasi(peliPakka.getYlin(), peliPakka.getYlin(), 50, pelaajatPelissa.get(0));
+        naytaKasi(pelaajan1Kasi, b1);
 
         nosta1.setOnAction((event)-> {
-            nosta(pelaajan1Kasi,b1);
+            nosta(pelaajan1Kasi, b1);
         });
         jaa1.setOnAction((event)-> {
             dealerLopetus(kortitDealer);
@@ -111,7 +110,6 @@ public class BlackJack extends Application {
         split1.setOnAction((event)-> {
             pelinaytto1(primaryStage);
         });
-
     }
     
     public void alkunaytto(Stage primaryStage) {
@@ -129,7 +127,7 @@ public class BlackJack extends Application {
         uusiPelaaja.setOnAction((event)-> {
             if (tekstikentta.getText().length() != 0 && pelaajatPelissa.size() < 4) {
                 pelaajat.getChildren().add(new Label(tekstikentta.getText()));
-                pelaajatPelissa.add(new Pelaaja(tekstikentta.getText(),500));
+                pelaajatPelissa.add(new Pelaaja(tekstikentta.getText(), 500));
             }        
         });
         

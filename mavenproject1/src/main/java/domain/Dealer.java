@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package documents;
+package domain;
 
-import documents.Kortti;
-import documents.Pakka;
+import domain.Kortti;
+import domain.Pakka;
 import java.util.ArrayList;
 
 /**
@@ -84,7 +84,7 @@ public class Dealer {
     
     public void nostaKortteja(Pakka pakka) {
         boolean valmis = false;
-        while(!valmis) {
+        while (!valmis) {
             if (this.getSumma() < 17) {
                 this.lisaa(pakka.getYlin());
             } else {

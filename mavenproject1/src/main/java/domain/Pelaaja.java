@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package documents;
+package domain;
 
 /**
  *
@@ -38,5 +38,9 @@ public class Pelaaja {
     
     public String getNimi() {
         return this.nimi;
+    }
+    
+    public int getRahaa() {
+        return this.rahaa;
     }
 }

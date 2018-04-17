@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package documents;
+package domain;
 
-import documents.Kortti;
-import documents.Pelaaja;
+import domain.Kortti;
+import domain.Pelaaja;
 import java.util.ArrayList;
 
 /**
@@ -87,14 +87,14 @@ public class Kasi {
     
     public void voitto() {
         if (this.getSumma() == 21) {
-            this.pelaaja.lisaaRahaa(3*panos);
+            this.pelaaja.lisaaRahaa(3 * panos);
         } else {
-            this.pelaaja.lisaaRahaa(2*panos);
+            this.pelaaja.lisaaRahaa(2 * panos);
         }
     }
     
     public void antaudu() {
-        this.pelaaja.lisaaRahaa((int)0.5*panos);
+        this.pelaaja.lisaaRahaa((int) 0.5 * panos);
     }
     
     public void valmis() {
