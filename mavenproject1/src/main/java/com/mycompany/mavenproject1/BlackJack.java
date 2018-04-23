@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -61,8 +62,12 @@ public class BlackJack extends Application {
     public void naytaKasi(Kasi kasi, HBox naytto) {
         naytto.getChildren().clear();
         for (int i = 0; i < kasi.getKortit().size(); i++) {
-            //naytto.getChildren().add(new Image("kuvat/2C.jpg"));
-            naytto.getChildren().add(new Label(kasi.getKortit().get(i).toString()));
+            Image image = new Image("resources/kuvat/2C.jpg");
+
+            ImageView iv1 = new ImageView();
+            iv1.setImage(image);
+            naytto.getChildren().add(iv1);
+            //naytto.getChildren().add(new Label(kasi.getKortit().get(i).toString()));
         }
         naytto.getChildren().add(new Label(" Summa: " + kasi.getSumma()));
     }
@@ -91,6 +96,15 @@ public class BlackJack extends Application {
         pelaajaValinnat1.getChildren().add(split1);
         
         root2.setBottom(pelaajaValinnat1);
+        
+        //erikoisnappulat
+        VBox erikoisNappulat = new VBox();
+        Button uusi = new Button("Uusi peli");
+        Button sekoita = new Button("Sekoita Pakka");
+        erikoisNappulat.getChildren().add(uusi);
+        erikoisNappulat.getChildren().add(sekoita);
+        
+        root2.setRight(erikoisNappulat);
 
         Scene scene = new Scene(root2, 900, 750);
         primaryStage.setScene(scene);
@@ -107,8 +121,11 @@ public class BlackJack extends Application {
         jaa1.setOnAction((event)-> {
             dealerLopetus(kortitDealer);
         });
-        split1.setOnAction((event)-> {
+        uusi.setOnAction((event)-> {
             pelinaytto1(primaryStage);
+        });
+        sekoita.setOnAction((event)-> {
+            this.peliPakka.sekoita();
         });
     }
     

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class Dealer {
     private ArrayList<Kortti> kortit;
 
-    
     public Dealer() {
         this.kortit = new ArrayList<>();
     }
