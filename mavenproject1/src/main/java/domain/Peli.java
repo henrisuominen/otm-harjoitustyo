@@ -62,8 +62,8 @@ public class Peli {
     public void split(int luku) {
         if (kadet[luku].getPelaaja().annaPanos(kadet[luku].getPanos())) {
             if (kadet[luku].onSamat()) {
-                Kortti kortti1 = kadet[luku].getKortti1();
-                Kortti kortti2 = kadet[luku].getKortti2();
+                Kortti kortti1 = kadet[luku].getKortit().get(0);
+                Kortti kortti2 = kadet[luku].getKortit().get(1);
                 kadet[luku] = new Kasi(kortti1, pakka.getYlin(), kadet[luku].getPanos(), kadet[luku].getPelaaja());
                 System.out.println(kadet[luku] + " : " + kadet[luku].getSumma());
                 boolean active = true;

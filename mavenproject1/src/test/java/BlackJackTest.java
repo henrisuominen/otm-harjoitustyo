@@ -50,6 +50,7 @@ public class BlackJackTest {
     @Test
     public void pelaajaTesti() {
         Pelaaja kalle = new Pelaaja("Kalle", 500);
+        kalle.getId();
         assertEquals(kalle.getNimi(), "Kalle");
         assertEquals(kalle.getRahaa(), 500);
         kalle.lisaaRahaa(200);
@@ -57,5 +58,43 @@ public class BlackJackTest {
         assertTrue(kalle.annaPanos(500));
         assertFalse(kalle.annaPanos(500));
         assertEquals(kalle.toString(), "Kalle: 200");
+    }
+    
+    @Test
+    public void DealerTesti() {
+        Dealer dealer = new Dealer();
+        dealer.lisaa(new Kortti(3, "Hertta"));
+        assertEquals(dealer.getKortit().get(0).getLuku(),3);
+        assertEquals(dealer.getKortit().get(0).getMaa(),"Hertta");
+        dealer.tyhjenna();
+        assertTrue(dealer.getKortit().isEmpty());
+        dealer.lisaa(new Kortti(1, "Hertta"));
+        dealer.lisaa(new Kortti(5, "Hertta"));
+        assertEquals(dealer.getMinSumma(),6);
+        assertEquals(dealer.getSumma(),16);
+        dealer.lisaa(new Kortti(6, "Hertta"));
+        assertEquals(dealer.getSumma(),12);
+        assertEquals(dealer.getMinSumma(),12);
+        assertEquals(dealer.getKortit().size(),3);
+        dealer.tyhjenna();
+        dealer.nostaKortteja(new Pakka(1));
+        assertTrue(dealer.getSumma() > 16);
+    }
+    
+    @Test
+    public void KasiTesti() {
+        Pelaaja pelaaja = new Pelaaja("Kalle",100);
+        Kasi kasi = new Kasi(new Kortti(3,"Hertta"),new Kortti(3,"Hertta"),30,pelaaja);
+        assertEquals(kasi.getKortit().size(),2);
+        assertEquals(kasi.getPanos(),30);
+        assertEquals(kasi.getPelaaja().getRahaa(),100);
+        kasi.setPanos(40);
+        assertEquals(kasi.getPanos(),40);
+        assertEquals(kasi.getPelaaja().getRahaa(),60);
+        kasi.voitto();
+        assertEquals(kasi.getPelaaja().getRahaa(),140);
+        assertEquals(kasi.getSumma(),6);
+        kasi.lisaa(new Kortti(2,"Hertta"));
+        assertEquals(kasi.getMinSumma(),8);
     }
 }

@@ -10,12 +10,14 @@ package domain;
  * @author henrisuominen
  */
 public class Pelaaja {
+    private int id;
     private int rahaa;
     private String nimi;
     
     public Pelaaja(String nimi, int rahaa) {
         this.nimi = nimi;
         this.rahaa = rahaa;
+        this.id = nimi.hashCode();
     }
     
     public String toString() {
@@ -42,5 +44,9 @@ public class Pelaaja {
     
     public int getRahaa() {
         return this.rahaa;
+    }
+    
+    public int getId() {
+        return this.id;
     }
 }

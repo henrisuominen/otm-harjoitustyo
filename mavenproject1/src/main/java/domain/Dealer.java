@@ -66,17 +66,6 @@ public class Dealer {
         return summa;
     }
         
-    public String toString() {
-        return this.kortit.toString();
-    }
-
-    public boolean valmis() {
-        if (this.getSumma() < 17) {
-            return false;
-        }
-        return true;
-    }
-    
     public void tyhjenna() {
         this.kortit.clear();
     }

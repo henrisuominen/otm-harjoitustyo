@@ -29,4 +29,34 @@ public class Kortti {
     public String toString() {
         return this.luku + ":" + this.maa;
     } 
+    
+    public String toPicture() {
+        switch(this.maa) {
+            case "Hertta":
+                maa = "H";
+                break;
+            case "Ruutu":
+                maa = "D";
+                break;
+            case "Pata":
+                maa = "S";
+                break;
+            case "Risti":
+                maa = "C";
+                break;
+        }
+        if (this.luku == 1) {
+            return "A" + maa;
+        } 
+        if (this.luku == 11) {
+            return "J" + maa;
+        } 
+        if (this.luku == 12) {
+            return "Q" + maa;
+        } 
+        if (this.luku == 13) {
+            return "K" + maa;
+        } 
+        return this.luku + maa;
+    } 
 }

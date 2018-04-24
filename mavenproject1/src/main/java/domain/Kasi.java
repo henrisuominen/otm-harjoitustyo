@@ -17,7 +17,6 @@ public class Kasi {
     private ArrayList<Kortti> kortit;
     private int panos;
     private Pelaaja pelaaja;
-    private boolean valmis;
     
     public Kasi(Kortti kortti1, Kortti kortti2, int panos, Pelaaja pelaaja) {
         this.kortit = new ArrayList<>();
@@ -25,7 +24,6 @@ public class Kasi {
         this.kortit.add(kortti2);
         this.panos = panos;
         this.pelaaja = pelaaja;
-        this.valmis = false;
     }
     
     public boolean onSamat() {
@@ -93,37 +91,15 @@ public class Kasi {
         }
     }
     
-    public void antaudu() {
-        this.pelaaja.lisaaRahaa((int) 0.5 * panos);
-    }
-    
-    public void valmis() {
-        this.valmis = true;
-    }
-    
-    public boolean getValmis() {
-        if (this.getSumma() > 20) {
-            return true;
-        }
-        return this.valmis;
-    }
-    
     public int getPanos() {
         return this.panos;
     }
     
     public void setPanos(int panos) {
         this.panos = panos;
+        this.pelaaja.annaPanos(40);
     }
-    
-    public Kortti getKortti1() {
-        return this.kortit.get(0);
-    }
-    
-    public Kortti getKortti2() {
-        return this.kortit.get(1);
-    }
-    
+
     public ArrayList<Kortti> getKortit() {
         return this.kortit;
     }
