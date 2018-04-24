@@ -1,11 +1,18 @@
-3.4 4 tuntia laskareita ja työn aloitusta.
+3.4 4 tuntia työn aloitusta.
 
-10.4 3 tuntia tekiessä laskareita ja lisätessä tiedostojo kuten mavenprojekti
+10.4 3 tuntia lisätessä tiedostojo kuten mavenprojekti
 sekä tämä
 
-14.4 5 tuntia parantaessa harjoitustyötä ja saatiin se kunnolla toimimaan.
+14.4 6 tuntia parantaessa harjoitustyötä ja saatiin se kunnolla toimimaan.
 
-17.4
+16.4 2 tuntia korjattiin pienempiä virheitä ja suunniteltiin logiikkaa
 
-yhteensä 12 tuntia
+17.4 6 tuntia tehtiin muutoksia ja saatiin sovelluslogiikka mukavaan muotoon tehtiin 
+myös paljon testejä ja checstylevirheitä korjattiin
 
+23.4 5 tuntia lisättiin kuvat peliin ja tehtiin pelistä pelikelpoinen
+
+24.4 7 tuntia lisättiin tietokanta ja korjattiin edellisen päivän virheitä (joita oli yllättävän paljon) tehtiin myös 
+sekvenssikaavio ja uudistettiin readme sekä tehtiin lisää kivoja testejä mm. luokista pelaaja, käsi ja dealer.
+
+yhteensä 33 tuntia
