@@ -31,32 +31,33 @@ public class Kortti {
     } 
     
     public String toPicture() {
+        String apu;
         switch(this.maa) {
             case "Hertta":
-                maa = "H";
+                apu = "H";
                 break;
             case "Ruutu":
-                maa = "D";
+                apu = "D";
                 break;
             case "Pata":
-                maa = "S";
+                apu = "S";
                 break;
-            case "Risti":
-                maa = "C";
+            default:
+                apu = "C";
                 break;
         }
         if (this.luku == 1) {
-            return "A" + maa;
+            return "A" + apu;
         } 
         if (this.luku == 11) {
-            return "J" + maa;
+            return "J" + apu;
         } 
         if (this.luku == 12) {
-            return "Q" + maa;
+            return "Q" + apu;
         } 
         if (this.luku == 13) {
-            return "K" + maa;
+            return "K" + apu;
         } 
-        return this.luku + maa;
+        return this.luku + apu;
     } 
 }
