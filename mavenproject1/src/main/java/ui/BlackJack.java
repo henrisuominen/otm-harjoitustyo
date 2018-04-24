@@ -91,6 +91,7 @@ public class BlackJack extends Application {
                 korttiKuva.setBackground(b);
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR: " + e);
+                korttiKuva.setText(dealer.getKortit().get(i).toString());
             }
             naytto.getChildren().add(korttiKuva);
         }
@@ -118,6 +119,7 @@ public class BlackJack extends Application {
                 korttiKuva.setBackground(b);
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR: " + e);
+                korttiKuva.setText(kasi.getKortit().get(i).toString());
             }
             naytto.getChildren().add(korttiKuva);
         }
