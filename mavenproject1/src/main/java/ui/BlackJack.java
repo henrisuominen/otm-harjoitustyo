@@ -43,6 +43,8 @@ public class BlackJack extends Application {
     ArrayList<Pelaaja> pelaajatPelissa;
     Pakka peliPakka;
     Dealer dealer;
+    boolean pelattu;
+    int panos;
 
     public void nosta(Kasi kasi, HBox naytto) {
         if (!peliPakka.isEmpty() && kasi.getMinSumma() < 21) {
@@ -54,9 +56,12 @@ public class BlackJack extends Application {
     public void voittoScreen(Kasi kasi, Label voittoNaytto) {
         if (kasi.getSumma() > dealer.getSumma() && kasi.getSumma() < 22) {
             voittoNaytto.setText("VOITIT");
-        }
-        if (dealer.getSumma() > 21 && kasi.getSumma() < 22) {
+            pelaajatPelissa.get(0).lisaaRahaa(2*panos);
+        } else if (dealer.getSumma() > 21 && kasi.getSumma() < 22) {
             voittoNaytto.setText("VOITIT");
+            pelaajatPelissa.get(0).lisaaRahaa(2*panos);
+        } else {
+            voittoNaytto.setText("HÄVISIT");
         }
     }
 
@@ -68,6 +73,7 @@ public class BlackJack extends Application {
     public void dealerLopetus(HBox naytto) {
         dealer.nostaKortteja(peliPakka);
         naytaKasi(naytto);
+        pelattu = true;
     }
 
     public void naytaKasi(HBox naytto) {
@@ -127,8 +133,10 @@ public class BlackJack extends Application {
     }
 
     public void pelinaytto1(Stage primaryStage) {
+        pelattu = false;
         dealer.tyhjenna();
-        
+        pelattu = false;
+        pelaajatPelissa.get(0).annaPanos(panos);
 
         BorderPane root2 = new BorderPane();
 
@@ -159,8 +167,16 @@ public class BlackJack extends Application {
         VBox erikoisNappulat = new VBox();
         Button uusi = new Button("Uusi peli");
         Button sekoita = new Button("Sekoita Pakka");
+        Button panosLisaa = new Button("lisaa panosta");
+        Button panosVahenna = new Button("vähennä panosta");
+        Label panosNaytto = new Label("panos: " + this.panos);
+        Label rahaNaytto = new Label("rahaa: " + this.pelaajatPelissa.get(0).getRahaa());
         erikoisNappulat.getChildren().add(uusi);
         erikoisNappulat.getChildren().add(sekoita);
+        erikoisNappulat.getChildren().add(rahaNaytto);
+        erikoisNappulat.getChildren().add(panosLisaa);
+        erikoisNappulat.getChildren().add(panosVahenna);
+        erikoisNappulat.getChildren().add(panosNaytto);
 
         root2.setRight(erikoisNappulat);
 
@@ -171,11 +187,13 @@ public class BlackJack extends Application {
         VBox a1 = (VBox) root2.getChildren().get(1);
         HBox b1 = (HBox) a1.getChildren().get(0);
         Kasi pelaajan1Kasi = new Kasi(peliPakka.getYlin(), peliPakka.getYlin(),
-                50, pelaajatPelissa.get(0));
+                panos, pelaajatPelissa.get(0));
         naytaKasi(pelaajan1Kasi, b1);
 
         nosta1.setOnAction((event) -> {
-            nosta(pelaajan1Kasi, b1);
+            if (!pelattu) {
+                nosta(pelaajan1Kasi, b1);
+            }
         });
         jaa1.setOnAction((event) -> {
             dealerLopetus(kortitDealer);
@@ -190,9 +208,20 @@ public class BlackJack extends Application {
         sekoita.setOnAction((event) -> {
             this.peliPakka.sekoita();
         });
+        panosVahenna.setOnAction((event) -> {
+            if(this.pelattu == true){
+                panos -= 10;
+            }
+        });
+        panosLisaa.setOnAction((event) -> {
+            if(this.pelattu == true){
+                panos += 10;
+            }
+        });
     }
 
     public void alkunaytto(Stage primaryStage) {
+        panos = 20;
         Button uusiPelaaja = new Button();
         Button aloita = new Button();
 
@@ -234,7 +263,7 @@ public class BlackJack extends Application {
 
     public void start(Stage primaryStage) {
         pelaajatPelissa = new ArrayList<>();
-        peliPakka = new Pakka(1);
+        peliPakka = new Pakka(3);
         dealer = new Dealer();
         alkunaytto(primaryStage);
     }
