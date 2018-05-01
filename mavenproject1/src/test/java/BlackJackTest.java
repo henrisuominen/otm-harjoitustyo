@@ -85,6 +85,7 @@ public class BlackJackTest {
     public void KasiTesti() {
         Pelaaja pelaaja = new Pelaaja("Kalle",100);
         Kasi kasi = new Kasi(new Kortti(3,"Hertta"),new Kortti(3,"Hertta"),30,pelaaja);
+        Pakka pakka = new Pakka(1);
         assertEquals(kasi.getKortit().size(),2);
         assertEquals(kasi.getPanos(),30);
         assertEquals(kasi.getPelaaja().getRahaa(),100);
@@ -94,7 +95,7 @@ public class BlackJackTest {
         kasi.voitto();
         assertEquals(kasi.getPelaaja().getRahaa(),140);
         assertEquals(kasi.getSumma(),6);
-        kasi.lisaa(new Kortti(2,"Hertta"));
-        assertEquals(kasi.getMinSumma(),8);
+        kasi.lisaa(pakka);
+        assertEquals(kasi.getKortit().size(),3);
     }
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 /**
  *
  * @author henrisuominen
+ * luokka joka hallinnoi dealerin kättä.
  */
 public class Dealer {
     private ArrayList<Kortti> kortit;
@@ -20,6 +21,9 @@ public class Dealer {
         this.kortit = new ArrayList<>();
     }
     
+    /**
+     * Lisaa kortin dealerin käteen. 
+     */
     public void lisaa(Kortti kortti) {
         this.kortit.add(kortti);
     }
@@ -28,6 +32,10 @@ public class Dealer {
         return this.kortit;
     }
     
+    /**
+     * palauttaa korttien summan olettan kaikki ässät arvoisiksi.
+     * @return palauttaa korttien arvojen summan.
+     */
     public int getMinSumma() {
         int summa = 0;
         for (int i = 0; i < kortit.size(); i++) {
@@ -51,6 +59,12 @@ public class Dealer {
         return summa;
     }
     
+    /**
+     * palauttaa korttien summan olettan kaikki ässät 11:n arvoisiksi, jos 
+     * kaden summa ei ole suurempi kuin 21. Jos summa ylittää 21, niin tämä 
+     * metodi olettaa ässät 1:n arvoiseksi.
+     * @return palauttaa korttien arvojen summan.
+     */
     public int getSumma() {
         int summa = this.getMinSumma();
         boolean assia = false;
@@ -66,10 +80,18 @@ public class Dealer {
         return summa;
     }
         
+    /**
+     * Poistaa kaikki kortit dealerilta.
+     */
     public void tyhjenna() {
         this.kortit.clear();
     }
     
+    /**
+     * Nostaa kortteja dealerille kasinosääntöjen mukaisesti, kunnes korttien 
+     * summa on suurempi tai yhtäsuuri kuin 17.
+     * @param pakka 
+     */
     public void nostaKortteja(Pakka pakka) {
         boolean valmis = false;
         while (!valmis) {

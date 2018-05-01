@@ -8,6 +8,7 @@ package domain;
 /**
  *
  * @author henrisuominen
+ * yksinkertainen tietorakenne, joka tallettaa muuttujia maa ja luku.
  */
 public class Kortti {
     private String maa;
@@ -30,6 +31,12 @@ public class Kortti {
         return this.luku + ":" + this.maa;
     } 
     
+    /**
+     * palauttaa jokaiselle kortille uniikin lyhenteen, joka on sama kuin 
+     * millä nimelle kortteja vastaavat kuvat ovat nimettyjä
+     *
+     * @return korttia kuvaava lyhenne
+     */
     public String toPicture() {
         String apu;
         switch(this.maa) {

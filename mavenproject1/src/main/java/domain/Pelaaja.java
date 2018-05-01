@@ -8,6 +8,7 @@ package domain;
 /**
  *
  * @author henrisuominen
+ * Luokka tarjoaa tavan hallinnoida pelaajan rahaa.
  */
 public class Pelaaja {
     private int id;
@@ -24,6 +25,11 @@ public class Pelaaja {
         return this.nimi + ": " + this.rahaa;
     }
     
+    /**
+     * panoksen antaminen ennen peliä
+     * @param   panos   pelaajalta nostettava panos
+     * @return true, jos pelaajalla on tarpeeksi rahaa pelatakseen, muuten false
+    */
     public boolean annaPanos(int panos) {
         if (panos == 0) {
             return false;
@@ -34,8 +40,13 @@ public class Pelaaja {
         return false;
     }
     
+    /**
+     * lisätään pelaajalle rahaa
+     * @param maara paljonko lisätään
+    */
     public void lisaaRahaa(int maara) {
         this.rahaa += maara;
+        
     }
     
     public String getNimi() {

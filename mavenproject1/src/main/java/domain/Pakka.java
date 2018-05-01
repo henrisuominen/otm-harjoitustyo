@@ -10,6 +10,7 @@ import java.util.Random;
 /**
  *
  * @author henrisuominen
+ * Hallinnoi pakkaa ja pakkojen määrästä riippuen siinä on n*52 korttia.
  */
 public class Pakka {
     private Kortti[] pakka;
@@ -39,6 +40,9 @@ public class Pakka {
         return this.pakka;
     }
     
+    /**
+     * sekoittaa pakan ja sen kortit
+    */
     public void sekoita() {
         this.ylin = 0;
         Random random = new Random();
@@ -50,6 +54,10 @@ public class Pakka {
         }
     }
     
+    /**
+     * palauttaa pakan päällinmäisimmän kortin
+     * @return kortti
+    */
     public Kortti getYlin() {
         if (ylin > (pakkoja * 52 - 1)) {
             return null;
@@ -57,10 +65,27 @@ public class Pakka {
         return pakka[ylin++];
     }
     
+    /**
+     * Palauttaa pakan päällinmäisimmän kortin.
+     * @see    mavenproject1.Pakka#getYlin()
+     * @return true, jos kaikki kortit on jo palautettu getYlin metodilla, muulloin false.
+    */
     public boolean isEmpty() {
         if (ylin > (pakkoja * 52 - 1)) {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Kertoo kuinka suuri osa pakasta on vielä jäljellä.
+     * @return palauttaa luvun 0 ja 1 välillä riippuen siitä 
+     * että kuinka suuri osa pakasta on pelattu.
+    */
+    public double paljonkoJaljella() {
+        int a = 52 * this.pakkoja - this.ylin;
+        int b = 52 * this.pakkoja;
+        double  c =100 * a/b;
+        return c;
     }
 }

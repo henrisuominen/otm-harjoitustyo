@@ -46,37 +46,18 @@ public class BlackJack extends Application {
     boolean pelattu;
     int panos;
 
-    public void nosta(Kasi kasi, HBox naytto) {
-        if (!peliPakka.isEmpty() && kasi.getMinSumma() < 21) {
-            kasi.lisaa(peliPakka.getYlin());
-            naytaKasi(kasi, naytto);
-        }
-    }
-    
-    public void voittoScreen(Kasi kasi, Label voittoNaytto) {
-        if (kasi.getSumma() > dealer.getSumma() && kasi.getSumma() < 22) {
-            voittoNaytto.setText("VOITIT");
-            pelaajatPelissa.get(0).lisaaRahaa(2*panos);
-        } else if (dealer.getSumma() > 21 && kasi.getSumma() < 22) {
-            voittoNaytto.setText("VOITIT");
-            pelaajatPelissa.get(0).lisaaRahaa(2*panos);
-        } else {
-            voittoNaytto.setText("HÄVISIT");
-        }
-    }
-
     public void dealerAloitus(HBox naytto) {
         dealer.lisaa(peliPakka.getYlin());
-        naytaKasi(naytto);
+        naytaDealerKasi(naytto);
     }
 
     public void dealerLopetus(HBox naytto) {
         dealer.nostaKortteja(peliPakka);
-        naytaKasi(naytto);
+        naytaDealerKasi(naytto);
         pelattu = true;
     }
 
-    public void naytaKasi(HBox naytto) {
+    public void naytaDealerKasi(HBox naytto) {
         naytto.getChildren().clear();
         for (int i = 0; i < dealer.getKortit().size(); i++) {
             Label korttiKuva = new Label("");
@@ -98,6 +79,26 @@ public class BlackJack extends Application {
             } catch (FileNotFoundException e) {
                 System.out.println("ERROR: " + e);
                 korttiKuva.setText(dealer.getKortit().get(i).toString());
+            }
+            naytto.getChildren().add(korttiKuva);
+        }
+        if (dealer.getKortit().size() == 1) {
+            Label korttiKuva = new Label("");
+            korttiKuva.setPrefSize(90, 130);
+            try {
+                FileInputStream inputstream = new FileInputStream(
+                        Paths.get("src/main/resources/kuvat/Green_back.jpg").toAbsolutePath().toString());
+                Image image = new Image(inputstream);
+                BackgroundImage bgImg = new BackgroundImage(image,
+                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        new BackgroundSize(BackgroundSize.AUTO, 
+                                BackgroundSize.AUTO, false, false,
+                                true, false));
+                Background b = new Background(bgImg);
+                korttiKuva.setBackground(b);
+            } catch (FileNotFoundException e) {
+                System.out.println("ERROR: " + e);
             }
             naytto.getChildren().add(korttiKuva);
         }
@@ -136,7 +137,6 @@ public class BlackJack extends Application {
         pelattu = false;
         dealer.tyhjenna();
         pelattu = false;
-        pelaajatPelissa.get(0).annaPanos(panos);
 
         BorderPane root2 = new BorderPane();
 
@@ -157,7 +157,8 @@ public class BlackJack extends Application {
         pelaajaValinnat1.getChildren().add(kortit1);
         pelaajaValinnat1.getChildren().add(nosta1);
         pelaajaValinnat1.getChildren().add(jaa1);
-        pelaajaValinnat1.getChildren().add(split1);
+        //pelaajaValinnat1.getChildren().add(split1);
+        pelaajaValinnat1.getChildren().add(tuplaus1);
 
         root2.setBottom(pelaajaValinnat1);
         Label voittoNaytto = new Label("");
@@ -170,9 +171,11 @@ public class BlackJack extends Application {
         Button panosLisaa = new Button("lisaa panosta");
         Button panosVahenna = new Button("vähennä panosta");
         Label panosNaytto = new Label("panos: " + this.panos);
+        Label pakkaaJaljella = new Label("pakkaa jäljellä: " + this.peliPakka.paljonkoJaljella() + "%");
         Label rahaNaytto = new Label("rahaa: " + this.pelaajatPelissa.get(0).getRahaa());
         erikoisNappulat.getChildren().add(uusi);
         erikoisNappulat.getChildren().add(sekoita);
+        erikoisNappulat.getChildren().add(pakkaaJaljella);
         erikoisNappulat.getChildren().add(rahaNaytto);
         erikoisNappulat.getChildren().add(panosLisaa);
         erikoisNappulat.getChildren().add(panosVahenna);
@@ -189,27 +192,47 @@ public class BlackJack extends Application {
         Kasi pelaajan1Kasi = new Kasi(peliPakka.getYlin(), peliPakka.getYlin(),
                 panos, pelaajatPelissa.get(0));
         naytaKasi(pelaajan1Kasi, b1);
-
+        
         nosta1.setOnAction((event) -> {
             if (!pelattu) {
-                nosta(pelaajan1Kasi, b1);
+                pelaajan1Kasi.lisaa(peliPakka);
+                naytaKasi(pelaajan1Kasi, b1);
+                if (pelaajan1Kasi.getSumma()>20) {
+                    dealerLopetus(kortitDealer);
+                    if (pelaajan1Kasi.voittojenJako(dealer)) {
+                        voittoNaytto.setText("VOITIT");
+                    } else {
+                        voittoNaytto.setText("HÄVISIT");
+                    }  
+                }
             }
         });
         jaa1.setOnAction((event) -> {
             dealerLopetus(kortitDealer);
-            voittoScreen(pelaajan1Kasi,voittoNaytto);
+            if (pelaajan1Kasi.voittojenJako(dealer)) {
+                voittoNaytto.setText("VOITIT");
+            } else {
+                voittoNaytto.setText("HÄVISIT");
+            }
+        });
+        split1.setOnAction((event) -> {
+
         });
         tuplaus1.setOnAction((event) -> {
 
         });
         uusi.setOnAction((event) -> {
-            pelinaytto1(primaryStage);
+            if(pelaajatPelissa.get(0).annaPanos(panos)) {
+                pelinaytto1(primaryStage);
+            }
         });
         sekoita.setOnAction((event) -> {
-            this.peliPakka.sekoita();
+            if(this.pelattu == true){
+                this.peliPakka.sekoita();
+            }
         });
         panosVahenna.setOnAction((event) -> {
-            if(this.pelattu == true){
+            if(this.pelattu == true && this.panos > 10){
                 panos -= 10;
             }
         });
@@ -263,7 +286,7 @@ public class BlackJack extends Application {
 
     public void start(Stage primaryStage) {
         pelaajatPelissa = new ArrayList<>();
-        peliPakka = new Pakka(3);
+        peliPakka = new Pakka(1);
         dealer = new Dealer();
         alkunaytto(primaryStage);
     }
