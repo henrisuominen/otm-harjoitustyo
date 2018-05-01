@@ -11,6 +11,8 @@ Blackjack on jo vuosikymmeniä ollut yksi suosituimmista korttipeleistä. Kysees
 
 [arkkitehtuuri](https://github.com/henrisuominen/otm-harjoitustyo/dokumentointi/arkkitehtuuri.md)
 
+[käyttöohje](https://github.com/henrisuominen/otm-harjoitustyo/blob/master/dokumentointi/Käyttöohje.md)
+
 ## Komentorivitoiminnot
 
 ###### Testaus
