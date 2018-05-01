@@ -23,6 +23,7 @@ public class Dealer {
     
     /**
      * Lisaa kortin dealerin käteen. 
+     * @param kortti lisattavä kortti, mitä todennäköisimmin pakan ylin
      */
     public void lisaa(Kortti kortti) {
         this.kortit.add(kortti);
@@ -90,7 +91,7 @@ public class Dealer {
     /**
      * Nostaa kortteja dealerille kasinosääntöjen mukaisesti, kunnes korttien 
      * summa on suurempi tai yhtäsuuri kuin 17.
-     * @param pakka 
+     * @param pakka pelissä käytettävä pakka
      */
     public void nostaKortteja(Pakka pakka) {
         boolean valmis = false;

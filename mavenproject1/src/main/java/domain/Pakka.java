@@ -67,7 +67,6 @@ public class Pakka {
     
     /**
      * Palauttaa pakan päällinmäisimmän kortin.
-     * @see    mavenproject1.Pakka#getYlin()
      * @return true, jos kaikki kortit on jo palautettu getYlin metodilla, muulloin false.
     */
     public boolean isEmpty() {

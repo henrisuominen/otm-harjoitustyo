@@ -40,7 +40,7 @@ public class Kasi {
     
     /**
      * Lisaa pakan päällimmäisen kortin käteen, jos käden summa on alle 21.
-     * @param pakka 
+     * @param pakka pelissä käytettävä pakka
      */
     public void lisaa(Pakka pakka) {
         if (!pakka.isEmpty() && this.getMinSumma() < 21) {
@@ -118,8 +118,7 @@ public class Kasi {
     
     /**
      * Tarkistaa voittiko pelaaja ja jos se voitti niin se kutsuu metodin voitto.
-     * @see mavenproject1.Kasi#voitto()
-     * @param dealer
+     * @param dealer pelin dealer
      * @return true, jos pelaaja voitti, muutoin false
      */
     public boolean voittojenJako(Dealer dealer) {
@@ -139,8 +138,7 @@ public class Kasi {
     
     /**
      * asettaa panoksen ja kutsuu pelaajan annaPanos metodin.
-     * @see mavenproject1.Pelaaja#annaPanos()
-     * @param panos 
+     * @param panos luku jonka verran halutaan panostaa
      */
     public void setPanos(int panos) {
         this.panos = panos;

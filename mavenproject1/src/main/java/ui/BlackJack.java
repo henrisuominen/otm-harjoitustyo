@@ -229,16 +229,19 @@ public class BlackJack extends Application {
         sekoita.setOnAction((event) -> {
             if(this.pelattu == true){
                 this.peliPakka.sekoita();
+                pakkaaJaljella.setText("pakkaa jäljellä: " + this.peliPakka.paljonkoJaljella() + "%");
             }
         });
         panosVahenna.setOnAction((event) -> {
             if(this.pelattu == true && this.panos > 10){
                 panos -= 10;
+                panosNaytto.setText("panos: " + this.panos);
             }
         });
         panosLisaa.setOnAction((event) -> {
             if(this.pelattu == true){
                 panos += 10;
+                panosNaytto.setText("panos: " + this.panos);
             }
         });
     }
