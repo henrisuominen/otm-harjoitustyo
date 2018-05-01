@@ -1,6 +1,6 @@
 ## Käyttöohje
 
-Lataa tiedosto [BlackJack.jar]: https://github.com/henrisuominen/otm-harjoitustyo/releases
+Lataa tiedosto [BlackJack.jar](https://github.com/henrisuominen/otm-harjoitustyo/releases)
 
 #### Konfigurointi
 
