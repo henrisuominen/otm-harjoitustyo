@@ -197,7 +197,7 @@ public class BlackJack extends Application {
             if (!pelattu) {
                 pelaajan1Kasi.lisaa(peliPakka);
                 naytaKasi(pelaajan1Kasi, b1);
-                if (pelaajan1Kasi.getSumma()>20) {
+                if (pelaajan1Kasi.getSumma() > 20) {
                     dealerLopetus(kortitDealer);
                     if (pelaajan1Kasi.voittojenJako(dealer)) {
                         voittoNaytto.setText("VOITIT");
@@ -222,24 +222,24 @@ public class BlackJack extends Application {
 
         });
         uusi.setOnAction((event) -> {
-            if(pelaajatPelissa.get(0).annaPanos(panos)) {
+            if (pelaajatPelissa.get(0).annaPanos(panos)) {
                 pelinaytto1(primaryStage);
             }
         });
         sekoita.setOnAction((event) -> {
-            if(this.pelattu == true){
+            if (this.pelattu == true) {
                 this.peliPakka.sekoita();
                 pakkaaJaljella.setText("pakkaa jäljellä: " + this.peliPakka.paljonkoJaljella() + "%");
             }
         });
         panosVahenna.setOnAction((event) -> {
-            if(this.pelattu == true && this.panos > 10){
+            if (this.pelattu == true && this.panos > 10) {
                 panos -= 10;
                 panosNaytto.setText("panos: " + this.panos);
             }
         });
         panosLisaa.setOnAction((event) -> {
-            if(this.pelattu == true){
+            if (this.pelattu == true) {
                 panos += 10;
                 panosNaytto.setText("panos: " + this.panos);
             }
@@ -249,6 +249,10 @@ public class BlackJack extends Application {
     public void alkunaytto(Stage primaryStage) {
         panos = 20;
         Button uusiPelaaja = new Button();
+        Button lisaaPakka = new Button("Lisää pakka");
+        Button vahennaPakka = new Button("Vähennä pakka");
+        Label tekstiPakoille = new Label("Pakkoja: ");
+        Label pakkoja = new Label("1");
         Button aloita = new Button();
 
         VBox pelaajat = new VBox();
@@ -265,6 +269,20 @@ public class BlackJack extends Application {
                 pelaajatPelissa.add(new Pelaaja(tekstikentta.getText(), 500));
             }
         });
+        
+        lisaaPakka.setOnAction((event) -> {
+            int p = Integer.parseInt(pakkoja.getText()) + 1;
+            pakkoja.setText(String.valueOf(p));
+            peliPakka = new Pakka(p);
+        });
+        
+        vahennaPakka.setOnAction((event) -> {
+            int p = Integer.parseInt(pakkoja.getText()) - 1;
+            if (p > 0) {
+                pakkoja.setText(String.valueOf(p));
+                peliPakka = new Pakka(p);
+            }
+        });
 
         aloita.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -275,12 +293,19 @@ public class BlackJack extends Application {
             }
         });
 
-        root.setBottom(uusiPelaaja);
+        VBox alaNappulat = new VBox();
+        alaNappulat.getChildren().add(uusiPelaaja);
+        alaNappulat.getChildren().add(lisaaPakka);
+        alaNappulat.getChildren().add(vahennaPakka);
+        HBox pakkaTeksti = new HBox();
+        pakkaTeksti.getChildren().add(tekstiPakoille);
+        pakkaTeksti.getChildren().add(pakkoja);
+        alaNappulat.getChildren().add(pakkaTeksti);
+        root.setBottom(alaNappulat);
         root.setRight(aloita);
         root.setCenter(pelaajat);
 
         Scene scene = new Scene(root, 300, 250);
-
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("BlackJack");

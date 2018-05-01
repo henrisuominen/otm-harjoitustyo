@@ -6,8 +6,6 @@
 package domain;
 
 /**
- *
- * @author henrisuominen
  * yksinkertainen tietorakenne, joka tallettaa muuttujia maa ja luku.
  */
 public class Kortti {
@@ -27,6 +25,10 @@ public class Kortti {
         return this.luku;
     }
     
+    /**
+     * Palautta kortin merkkijonona
+     * @return numero:maa
+     */
     public String toString() {
         return this.luku + ":" + this.maa;
     } 
@@ -39,7 +41,7 @@ public class Kortti {
      */
     public String toPicture() {
         String apu;
-        switch(this.maa) {
+        switch (this.maa) {
             case "Hertta":
                 apu = "H";
                 break;

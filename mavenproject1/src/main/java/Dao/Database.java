@@ -6,8 +6,7 @@
 package dao;
 import java.sql.*;
 /**
- *
- * @author henrisuominen
+ * Tietokanta
  */
 public class Database {
     private String databaseAddress;

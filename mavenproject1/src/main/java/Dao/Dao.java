@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.*;
 /**
  *
- * @author henrisuominen
+ * Tietokantaan tarvittava rajapinta
  */
 
 public interface Dao<T, K> {

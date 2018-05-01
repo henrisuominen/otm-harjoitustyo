@@ -6,8 +6,6 @@
 package domain;
 
 /**
- *
- * @author henrisuominen
  * Luokka tarjoaa tavan hallinnoida pelaajan rahaa.
  */
 public class Pelaaja {
@@ -31,9 +29,7 @@ public class Pelaaja {
      * @return true, jos pelaajalla on tarpeeksi rahaa pelatakseen, muuten false
     */
     public boolean annaPanos(int panos) {
-        if (panos == 0) {
-            return false;
-        } else if (this.rahaa >= panos) {
+        if (this.rahaa >= panos) {
             this.rahaa -= panos;
             return true;
         }

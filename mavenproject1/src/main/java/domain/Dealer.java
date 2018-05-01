@@ -10,8 +10,6 @@ import domain.Pakka;
 import java.util.ArrayList;
 
 /**
- *
- * @author henrisuominen
  * luokka joka hallinnoi dealerin kättä.
  */
 public class Dealer {

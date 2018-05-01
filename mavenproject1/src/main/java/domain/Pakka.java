@@ -8,8 +8,6 @@ package domain;
 import java.util.Random;
 
 /**
- *
- * @author henrisuominen
  * Hallinnoi pakkaa ja pakkojen määrästä riippuen siinä on n*52 korttia.
  */
 public class Pakka {
@@ -84,7 +82,7 @@ public class Pakka {
     public double paljonkoJaljella() {
         int a = 52 * this.pakkoja - this.ylin;
         int b = 52 * this.pakkoja;
-        double  c =100 * a/b;
+        double  c = 100 * a / b;
         return c;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author jhenri
+ * Pelaajan Tietokanta, joka tallettaa rahaa, nimen ja id:n.
  */
 public class PelaajaDao implements Dao<Pelaaja, Integer> {
 

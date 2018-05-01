@@ -10,8 +10,6 @@ import domain.Pelaaja;
 import java.util.ArrayList;
 
 /**
- *
- * @author henrisuominen
  * pelaajan kättä kuvaava luokka.
  */
 public class Kasi {
@@ -98,10 +96,6 @@ public class Kasi {
             summa += 10;
         }
         return summa;
-    }
-        
-    public String toString() {
-        return this.kortit.toString();
     }
     
     /**
