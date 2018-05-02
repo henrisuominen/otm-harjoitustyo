@@ -56,4 +56,13 @@ public class Pelaaja {
     public int getId() {
         return this.id;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        Pelaaja p  = (Pelaaja) o;
+        if (this.nimi.equals(p.nimi)) {
+            return true;
+        }
+        return false;
+    }
 }

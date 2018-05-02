@@ -5,6 +5,7 @@
  */
 package ui;
 
+import Dao.*;
 import domain.Dealer;
 import domain.Kasi;
 import domain.Pelaaja;
@@ -12,7 +13,10 @@ import domain.Pakka;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -44,7 +48,15 @@ public class BlackJack extends Application {
     Pakka peliPakka;
     Dealer dealer;
     boolean pelattu;
+    boolean uusiPoyta;
     int panos;
+    PelaajaDao pelaajaDao;
+    Database database;
+
+    public BlackJack() throws ClassNotFoundException {
+        this.database = new Database("jdbc:sqlite:Pelaaja.db");
+        this.pelaajaDao = new PelaajaDao(this.database);
+    }
 
     public void dealerAloitus(HBox naytto) {
         dealer.lisaa(peliPakka.getYlin());
@@ -134,11 +146,36 @@ public class BlackJack extends Application {
     }
 
     public void pelinaytto1(Stage primaryStage) {
+        
         pelattu = false;
+        uusiPoyta = true;
         dealer.tyhjenna();
         pelattu = false;
+        try {
+            this.pelaajaDao.saveOrUpdate(this.pelaajatPelissa.get(0));
+        } catch (SQLException ex) {
+            Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         BorderPane root2 = new BorderPane();
+        
+        //kaunis kuva taakse
+        FileInputStream inputstream;
+        try {
+            inputstream = new FileInputStream(
+                    Paths.get("src/main/resources/kuvat/aces.jpg").toAbsolutePath().toString());
+            Image image = new Image(inputstream);
+                BackgroundImage bgImg = new BackgroundImage(image,
+                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        new BackgroundSize(BackgroundSize.AUTO, 
+                                BackgroundSize.AUTO, false, false,
+                                true, false));
+                Background b = new Background(bgImg);
+                root2.setBackground(b);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         //dealer
         HBox kortitDealer = new HBox();
@@ -195,6 +232,7 @@ public class BlackJack extends Application {
         
         nosta1.setOnAction((event) -> {
             if (!pelattu) {
+                uusiPoyta = false;
                 pelaajan1Kasi.lisaa(peliPakka);
                 naytaKasi(pelaajan1Kasi, b1);
                 if (pelaajan1Kasi.getSumma() > 20) {
@@ -208,6 +246,7 @@ public class BlackJack extends Application {
             }
         });
         jaa1.setOnAction((event) -> {
+            uusiPoyta = false;
             dealerLopetus(kortitDealer);
             if (pelaajan1Kasi.voittojenJako(dealer)) {
                 voittoNaytto.setText("VOITIT");
@@ -216,10 +255,22 @@ public class BlackJack extends Application {
             }
         });
         split1.setOnAction((event) -> {
-
+            uusiPoyta = false;
         });
         tuplaus1.setOnAction((event) -> {
-
+            if (uusiPoyta&&!pelattu) {
+                pelaajan1Kasi.lisaa(peliPakka);
+                naytaKasi(pelaajan1Kasi, b1);
+                this.panos = 2*this.panos;
+                pelaajan1Kasi.setPanos(this.panos);
+                dealerLopetus(kortitDealer);
+                if (pelaajan1Kasi.voittojenJako(dealer)) {
+                    voittoNaytto.setText("VOITIT");
+                } else {
+                    voittoNaytto.setText("HÄVISIT");
+                }  
+                panosNaytto.setText("panos: " + this.panos);
+            }
         });
         uusi.setOnAction((event) -> {
             if (pelaajatPelissa.get(0).annaPanos(panos)) {
@@ -264,9 +315,21 @@ public class BlackJack extends Application {
         pelaajat.getChildren().add(tekstikentta);
 
         uusiPelaaja.setOnAction((event) -> {
-            if (tekstikentta.getText().length() != 0 && pelaajatPelissa.size() < 4) {
-                pelaajat.getChildren().add(new Label(tekstikentta.getText()));
-                pelaajatPelissa.add(new Pelaaja(tekstikentta.getText(), 500));
+            if (tekstikentta.getText().length() != 0 && pelaajatPelissa.size() < 1) {
+                try {
+                    Pelaaja pelaaja = new Pelaaja(tekstikentta.getText(),1000);
+                    if (pelaajaDao.findAll().contains(pelaaja)) {
+                        pelaajat.getChildren().add(new Label(tekstikentta.getText()));
+                        Pelaaja pelaajaPelissa = pelaajaDao.findByNameOne(tekstikentta.getText());
+                        pelaajatPelissa.add(pelaajaPelissa);
+                    } else {
+                        pelaajat.getChildren().add(new Label(tekstikentta.getText()));
+                        pelaajaDao.saveOrUpdate(pelaaja);
+                        pelaajatPelissa.add(pelaaja);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
