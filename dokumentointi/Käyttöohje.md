@@ -8,11 +8,15 @@ Lataa tiedosto [BlackJack.jar](https://github.com/henrisuominen/otm-harjoitustyo
 
 Ohjelma käynnistetään komennolla
 
-java -jar todoapp.jar
+java -jar BlackJack.jar
+
+#### Ennen käynnistämistä
+
+Tiedosto olettaa kuvien olevan paikassa src/main/resources/kuvat. Kansion kuvat löytyvät dokumentoinnissa. Pelata voi ilman kuviakin mutta tällöin kuvien tilalla on tekstiä.
 
 #### Kirjautuminen
 
-kirjoita nimesi ylös ja sen jälkeen paina lisää pelaaja. Pelaajan nimi tulee nyt esille näytölle. Tämän jälkeen voit valita pakkojen lukumäärän lisää/vähenää pakka -napeista. Tämän jälkeen peli alkaa aloita-napilla.
+kirjoita nimesi ylös ja sen jälkeen paina lisää pelaaja. Pelaajan nimi tulee nyt esille näytölle. Jos nimeä ei löydy tietokannasta saat aluksi 1000 rahaa. Muuten sinulla on rahaa sen verran kuin sinulle viime kerrasta jäi. Tämän jälkeen voit valita pakkojen lukumäärän lisää/vähenää pakka -napeista. Tämän jälkeen peli alkaa aloita-napilla.
 
 #### pelaaminen
 
