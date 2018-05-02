@@ -15,7 +15,7 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
-        this.init();
+        this.teeTietokanta();
     }
 
     public Connection getConnection() throws SQLException {
@@ -26,13 +26,12 @@ public class Database {
         return DriverManager.getConnection(databaseAddress);
     }
     
-    public void init() {
-        List<String> commands = this.sqliteCommands();
+    public void teeTietokanta() {
+        List<String> commands = this.komennot();
         try (Connection conn = getConnection()) {
             Statement st = conn.createStatement();
 
             for (String com : commands) {
-                System.out.println("Running command: " + com);
                 st.executeUpdate(com);
             }
         } catch (Throwable t) {
@@ -40,11 +39,11 @@ public class Database {
         }
     }
     
-    private List<String> sqliteCommands() {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("CREATE TABLE Pelaaja (id integer PRIMARY KEY, nimi varchar(50), rahaa integer);");
-        list.add("INSERT INTO Pelaaja (nimi, rahaa) VALUES ('Henri', 99999990);");
-        return list;
+    private List<String> komennot() {
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("CREATE TABLE Pelaaja (id integer PRIMARY KEY, nimi varchar(50), rahaa integer);");
+        lista.add("INSERT INTO Pelaaja (nimi, rahaa) VALUES ('Henri', 99999990);");
+        return lista;
     }
     
 }

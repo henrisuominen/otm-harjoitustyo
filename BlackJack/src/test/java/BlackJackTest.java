@@ -62,6 +62,7 @@ public class BlackJackTest {
     @Test
     public void pelaajaTesti() {
         Pelaaja kalle = new Pelaaja("Kalle", 500);
+        Pelaaja kalle2 = new Pelaaja("Kalle", 1000100);
         Pelaaja pelle = new Pelaaja("Pelle", 500);
         assertEquals(kalle.getNimi(), "Kalle");
         assertEquals(kalle.getRahaa(), 500);
@@ -71,6 +72,8 @@ public class BlackJackTest {
         assertFalse(kalle.annaPanos(500));
         assertEquals(kalle.toString(), "Kalle: 200");
         assertNotEquals(kalle.getId(), pelle.getId());
+        assertTrue(kalle.equals(kalle2));
+        assertFalse(kalle.equals(pelle));
     }
     
     @Test

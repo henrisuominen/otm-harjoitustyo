@@ -14,7 +14,6 @@ import java.util.List;
  * Pelaajan Tietokanta, joka tallettaa rahaa, nimen ja id:n.
  */
 public class PelaajaDao implements Dao<Pelaaja, Integer> {
-
     private Database database;
 
     public PelaajaDao(Database database) {
@@ -29,10 +28,8 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
     public void delete(Integer key) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM Pelaaja WHERE id = ?");
-
         stmt.setInt(1, key);
         stmt.executeUpdate();
-
         stmt.close();
         conn.close();
     }
@@ -44,30 +41,22 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
      * @throws SQLException 
      */
     private Pelaaja save(Pelaaja pelaaja) throws SQLException {
-
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Pelaaja"
                 + " (nimi, rahaa)"
                 + " VALUES (?, ?)");
         stmt.setString(1, pelaaja.getNimi());
         stmt.setInt(2, pelaaja.getRahaa());
-
         stmt.executeUpdate();
         stmt.close();
-
         stmt = conn.prepareStatement("SELECT * FROM Pelaaja WHERE nimi = ?");
         stmt.setString(1, pelaaja.getNimi());
-
         ResultSet rs = stmt.executeQuery();
         rs.next();
-
         Pelaaja p = new Pelaaja(rs.getString("nimi"), rs.getInt("rahaa"));
-
         stmt.close();
         rs.close();
-
         conn.close();
-
         return p;
     }
 
@@ -78,17 +67,13 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
      * @throws SQLException 
      */
     private Pelaaja update(Pelaaja pelaaja) throws SQLException {
-
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("UPDATE Pelaaja SET rahaa = ? WHERE nimi = ?");
         stmt.setInt(1, pelaaja.getRahaa());
         stmt.setString(2, pelaaja.getNimi());
-
         stmt.executeUpdate();
-
         stmt.close();
         conn.close();
-
         return pelaaja;
     }
 
@@ -102,7 +87,6 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
         if (!this.findAll().contains(pelaaja)) {
             return save(pelaaja);
         } else {
-
             return update(pelaaja);
         }
     }
@@ -117,15 +101,12 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Pelaaja");
         ResultSet rs = stmt.executeQuery();
-
         while (rs.next()) {
             Pelaaja pelaaja = new Pelaaja(rs.getString("nimi"), rs.getInt("rahaa"));
             pelaajat.add(pelaaja);
         }
-
         stmt.close();
         rs.close();
-
         connection.close();
         return pelaajat;
     }
@@ -140,21 +121,15 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pelaaja WHERE nimi = ?");
         stmt.setString(1, nimi);
-        
-
         ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
+        boolean onViela = rs.next();
+        if (!onViela) {
             return null;
         }
-
         Pelaaja pelaaja = new Pelaaja(rs.getString("nimi"), rs.getInt("rahaa"));
-
         stmt.close();
         rs.close();
-
         conn.close();
-
         return pelaaja;
     }
 

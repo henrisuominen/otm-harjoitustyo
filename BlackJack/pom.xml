@@ -17,6 +17,13 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.0</version>
+            <configuration>
+        <excludes>
+            <exclude>mavenproject1/ui/*</exclude>
+            <exclude>mavenproject1/src/main/java/ui/*</exclude>
+            <exclude>BlackJack/ui/*</exclude>
+        </excludes>
+    </configuration> 
             <executions>
                 <execution>
                     <id>default-prepare-agent</id>
