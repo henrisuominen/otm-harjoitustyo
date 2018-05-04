@@ -135,6 +135,6 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
 
     @Override
     public Pelaaja findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 }

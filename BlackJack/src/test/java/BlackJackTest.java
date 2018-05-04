@@ -159,4 +159,13 @@ public class BlackJackTest {
         kasi2.lisaa(pakka);
         assertFalse(kasi2.voittojenJako(dealer));
     }
+    
+    @Test
+    public void huijauskoodiTest() {
+        Pelaaja kalle = new Pelaaja("kalle",1000);
+        kalle.cheatCode(113213);
+        assertEquals(kalle.getRahaa(), 2000);
+        kalle.cheatCode(123123);
+        assertEquals(kalle.getRahaa(), 2000);
+    }
 }

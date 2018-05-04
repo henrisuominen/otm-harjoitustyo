@@ -12,11 +12,13 @@ public class Pelaaja {
     private int id;
     private int rahaa;
     private String nimi;
+    private String huijauskoodi;
     
     public Pelaaja(String nimi, int rahaa) {
         this.nimi = nimi;
         this.rahaa = rahaa;
         this.id = nimi.hashCode();
+        this.huijauskoodi = "";
     }
     
     public String toString() {
@@ -57,6 +59,11 @@ public class Pelaaja {
         return this.id;
     }
     
+    /**
+     * tarkistaa ovatko kaksi pelaajaa samat.
+     * @param o vastaanottaa Objectin mutta olettaa vain Pelaaja-olioita
+     * @return true jos pelaajat ovat samannimiset, muulloin false
+    */
     @Override
     public boolean equals(Object o) {
         Pelaaja p  = (Pelaaja) o;
@@ -64,5 +71,21 @@ public class Pelaaja {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Tätä metodia ei ole olemassakaan!
+     * Unohda kaikki näkemäsi!
+     * @param i vastaanottaa numeron, jonka perusteella osaa sanoa onko oikea huijauskoodi suoritettu.
+     */
+    public void cheatCode(int i) {
+        if (i == 0) {
+            huijauskoodi = "";
+        } else {
+            huijauskoodi += "" + i;
+            if (huijauskoodi.equals("113213")) {
+                this.rahaa += 1000;
+            }
+        }
     }
 }

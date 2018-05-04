@@ -35,14 +35,13 @@ public class Database {
                 st.executeUpdate(com);
             }
         } catch (Throwable t) {
-            System.out.println("Error: " + t.getMessage());
         }
     }
     
     private List<String> komennot() {
         ArrayList<String> lista = new ArrayList<>();
-        lista.add("CREATE TABLE Pelaaja (id integer PRIMARY KEY, nimi varchar(50), rahaa integer);");
-        lista.add("INSERT INTO Pelaaja (nimi, rahaa) VALUES ('Henri', 99999990);");
+        lista.add("CREATE TABLE IF NOT EXISTS Pelaaja (id integer PRIMARY KEY, nimi varchar(50), rahaa integer);");
+        lista.add("INSERT INTO IF NOT EXISTS Pelaaja (nimi, rahaa) VALUES ('Henri', 99999990);");
         return lista;
     }
     

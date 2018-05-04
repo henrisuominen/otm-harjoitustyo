@@ -38,21 +38,13 @@ public class Dealer {
     public int getMinSumma() {
         int summa = 0;
         for (int i = 0; i < kortit.size(); i++) {
-            switch (kortit.get(i).getLuku()) {
-                case 1:
-                    summa++;
-                    break;
-                case 11:
-                    summa += 10;
-                    break;
-                case 12:
-                    summa += 10;
-                    break;
-                case 13:
-                    summa += 10;
-                    break;
-                default:
-                    summa += kortit.get(i).getLuku();
+            int luku = kortit.get(i).getLuku();
+            if (luku == 11 || luku == 12 || luku == 13) {
+                summa += 10;
+            } else if (luku == 1) {
+                summa++;
+            } else {
+                summa += kortit.get(i).getLuku();
             }
         }
         return summa;

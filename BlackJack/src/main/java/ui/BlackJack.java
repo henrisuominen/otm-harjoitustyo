@@ -34,6 +34,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -89,7 +90,6 @@ public class BlackJack extends Application {
                 Background b = new Background(bgImg);
                 korttiKuva.setBackground(b);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: " + e);
                 korttiKuva.setText(dealer.getKortit().get(i).toString());
             }
             naytto.getChildren().add(korttiKuva);
@@ -110,7 +110,6 @@ public class BlackJack extends Application {
                 Background b = new Background(bgImg);
                 korttiKuva.setBackground(b);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: " + e);
             }
             naytto.getChildren().add(korttiKuva);
         }
@@ -137,7 +136,6 @@ public class BlackJack extends Application {
                 Background b = new Background(bgImg);
                 korttiKuva.setBackground(b);
             } catch (FileNotFoundException e) {
-                System.out.println("ERROR: " + e);
                 korttiKuva.setText(kasi.getKortit().get(i).toString());
             }
             naytto.getChildren().add(korttiKuva);
@@ -154,7 +152,6 @@ public class BlackJack extends Application {
         try {
             this.pelaajaDao.saveOrUpdate(this.pelaajatPelissa.get(0));
         } catch (SQLException ex) {
-            Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         BorderPane root2 = new BorderPane();
@@ -174,7 +171,6 @@ public class BlackJack extends Application {
                 Background b = new Background(bgImg);
                 root2.setBackground(b);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //dealer
@@ -199,6 +195,7 @@ public class BlackJack extends Application {
 
         root2.setBottom(pelaajaValinnat1);
         Label voittoNaytto = new Label("");
+        voittoNaytto.setFont(new Font(40));
         root2.setCenter(voittoNaytto);
 
         //erikoisnappulat
@@ -250,6 +247,7 @@ public class BlackJack extends Application {
             dealerLopetus(kortitDealer);
             if (pelaajan1Kasi.voittojenJako(dealer)) {
                 voittoNaytto.setText("VOITIT");
+                rahaNaytto.setText("rahaa: " + this.pelaajatPelissa.get(0).getRahaa());
             } else {
                 voittoNaytto.setText("HÄVISIT");
             }
@@ -273,26 +271,39 @@ public class BlackJack extends Application {
             }
         });
         uusi.setOnAction((event) -> {
-            if (pelaajatPelissa.get(0).annaPanos(panos)) {
-                pelinaytto1(primaryStage);
+            this.pelaajatPelissa.get(0).cheatCode(0);
+            if (this.peliPakka.paljonkoJaljella() >= 10) {
+                if (pelaajatPelissa.get(0).annaPanos(panos)) {
+                    pelinaytto1(primaryStage);
+                } else {
+                voittoNaytto.setText("SINULLA EI OLE RAHAA!");
+                }
+            } else {
+                voittoNaytto.setText("SEKOITA PAKKA ENNEN PELIÄ");
             }
         });
         sekoita.setOnAction((event) -> {
             if (this.pelattu == true) {
                 this.peliPakka.sekoita();
                 pakkaaJaljella.setText("pakkaa jäljellä: " + this.peliPakka.paljonkoJaljella() + "%");
+            } else {
+                this.pelaajatPelissa.get(0).cheatCode(1);
             }
         });
         panosVahenna.setOnAction((event) -> {
             if (this.pelattu == true && this.panos > 10) {
                 panos -= 10;
                 panosNaytto.setText("panos: " + this.panos);
+            } else {
+                this.pelaajatPelissa.get(0).cheatCode(2);
             }
         });
         panosLisaa.setOnAction((event) -> {
             if (this.pelattu == true) {
                 panos += 10;
                 panosNaytto.setText("panos: " + this.panos);
+            } else {
+                this.pelaajatPelissa.get(0).cheatCode(3);
             }
         });
     }
@@ -328,7 +339,7 @@ public class BlackJack extends Application {
                         pelaajatPelissa.add(pelaaja);
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
         });
