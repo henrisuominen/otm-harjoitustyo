@@ -12,10 +12,12 @@ myös paljon testejä ja checstylevirheitä korjattiin
 
 23.4 5 tuntia lisättiin kuvat peliin ja tehtiin pelistä pelikelpoinen
 
-24.4 7 tuntia lisättiin tietokanta ja korjattiin edellisen päivän virheitä (joita oli yllättävän paljon) tehtiin myös 
+24.4 7 tuntia lisättiin tietokanta (alustavasti) ja korjattiin edellisen päivän virheitä (joita oli yllättävän paljon) tehtiin myös 
 sekvenssikaavio ja uudistettiin readme sekä tehtiin lisää kivoja testejä mm. luokista pelaaja, käsi ja dealer.
 
 1.5 5 tuntia uudistettiin rakennetta paremmaksi ja tehtiin testejä ja lisättiin käyttöliittymään lisäjuttuja,
 kuten esim että voi valita pakkojen määrän
 
-yhteensä 38 tuntia
+2.5 4 tuntia lisättiin tietokanta (toimintakuntoiseksi) ja takatausta paranneltiin myös rahasysteemiä. tehtiin myös parannus testiin.
+
+yhteensä 42 tuntia
