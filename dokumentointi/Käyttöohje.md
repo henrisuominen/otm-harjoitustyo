@@ -27,3 +27,5 @@ esimerkiksi korottaa panostasi tai sekoittaa pakan. Tämän jälkeen voit aloitt
 
 Jos pelaajalla ja dealerilla on sama summa, vaikka se molemmilla olisi 21, niin pelaaja häviää.
 Jos pelaajan summa on voittaessa 21, niin saa hän panoksensa 3 kertaisena.
+Pelaaja ei voi aloittaa uutta peliä jos sekoittamatonta pakkaa on jäljellä alle 10 %. Tällöin pakka tulee sekoittaa
+
