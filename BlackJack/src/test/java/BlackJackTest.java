@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
+import Dao.Database;
+import Dao.PelaajaDao;
 import domain.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +21,7 @@ import static org.junit.Assert.*;
  * @author henrisuominen
  */
 public class BlackJackTest {
-    
+
     public BlackJackTest() {
     }
 
@@ -168,4 +172,6 @@ public class BlackJackTest {
         kalle.cheatCode(123123);
         assertEquals(kalle.getRahaa(), 2000);
     }
+    
+    
 }

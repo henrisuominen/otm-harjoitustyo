@@ -190,7 +190,6 @@ public class BlackJack extends Application {
         pelaajaValinnat1.getChildren().add(kortit1);
         pelaajaValinnat1.getChildren().add(nosta1);
         pelaajaValinnat1.getChildren().add(jaa1);
-        //pelaajaValinnat1.getChildren().add(split1);
         pelaajaValinnat1.getChildren().add(tuplaus1);
 
         root2.setBottom(pelaajaValinnat1);
@@ -251,9 +250,6 @@ public class BlackJack extends Application {
             } else {
                 voittoNaytto.setText("HÄVISIT");
             }
-        });
-        split1.setOnAction((event) -> {
-            uusiPoyta = false;
         });
         tuplaus1.setOnAction((event) -> {
             if (uusiPoyta&&!pelattu) {

@@ -117,6 +117,7 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
      * @return Kyseisen pelaajan
      * @throws SQLException 
      */
+    @Override
     public Pelaaja findByNameOne(String nimi) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pelaaja WHERE nimi = ?");
@@ -131,10 +132,5 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
         rs.close();
         conn.close();
         return pelaaja;
-    }
-
-    @Override
-    public Pelaaja findOne(Integer key) throws SQLException {
-        return null;
     }
 }
