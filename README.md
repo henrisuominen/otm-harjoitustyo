@@ -55,4 +55,4 @@ Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/si
 
 Nauti uusimmasta BlackJack pelistä!
 
-[release](https://github.com/henrisuominen/otm-harjoitustyo/releases/tag/viikko5)
+[Loppupalautus](https://github.com/henrisuominen/otm-harjoitustyo/releases/tag/Loppupalautus)
