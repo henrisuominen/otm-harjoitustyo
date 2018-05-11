@@ -121,8 +121,10 @@ public class PelaajaDao implements Dao<Pelaaja, Integer> {
     public Pelaaja findByNameOne(String nimi) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pelaaja WHERE nimi = ?");
+        System.out.println("1");
         stmt.setString(1, nimi);
         ResultSet rs = stmt.executeQuery();
+        System.out.println("2");
         boolean onViela = rs.next();
         if (!onViela) {
             return null;
